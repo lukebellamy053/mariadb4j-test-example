@@ -1,0 +1,14 @@
+version: '2.4'
+services:
+  mariadb4jdb:
+    image: mysql:5.7.22
+    container_name: mariadb4j-db
+    command: --max_allowed_packet=1G --net_buffer_length=1M
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_DATABASE: exampledb
+    ports:
+      - "3311:3306"
+    volumes:
+      - ./src/main/resources/db/migration:/docker-entrypoint-initdb.d
